@@ -6,12 +6,15 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  ActivityIndicator,
 } from 'react-native';
 import { useSigninManagement } from './hooks/useSigninManagement';
-import { globalStyles } from '../../styles';
+import { globalStyles } from '../../../shared/styles';
+import { useAuthContext } from '../../../shared/hooks/useAuthContext';
 
 const Signin = () => {
   const { fields, actions } = useSigninManagement();
+  const { isLoadingAuth } = useAuthContext();
   return (
     <View style={globalStyles.container}>
       <Image
@@ -36,8 +39,15 @@ const Signin = () => {
           value={fields.password}
           onChangeText={value => actions.handleChangeField('password', value)}
         />
-        <TouchableOpacity style={styles.button} onPress={actions.handleSignin}>
-          <Text style={styles.buttonText}>Login</Text>
+        <TouchableOpacity
+          style={globalStyles.buttonPrimary}
+          onPress={actions.handleSignin}
+        >
+          {isLoadingAuth ? (
+            <ActivityIndicator size="small" color="#fff" />
+          ) : (
+            <Text style={globalStyles.buttonTextPrimary}>Login</Text>
+          )}
         </TouchableOpacity>
       </View>
     </View>
@@ -60,20 +70,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 14,
     paddingVertical: 32,
-  },
-  button: {
-    width: '95%',
-    height: 40,
-    backgroundColor: '#3FFFA3',
-    borderRadius: 4,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#101026',
-    fontSize: 18,
-    fontWeight: 'bold',
-    alignSelf: 'center',
   },
 });
 

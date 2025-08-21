@@ -1,20 +1,15 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import Signin from '../pages/Signin';
+import Dashboard from '../../pages/Dashboard';
 
 const Stack = createNativeStackNavigator();
 
-function AuthRoutes() {
+function AppRoutes() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="SignIn"
-        component={Signin}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="Dashboard" component={Dashboard} />
     </Stack.Navigator>
   );
 }
 
-export default AuthRoutes;
+export default AppRoutes;

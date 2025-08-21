@@ -1,6 +1,6 @@
 import { StatusBar, useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Routes from './src/routes';
+import Routes from './src/shared/routes';
 import { NavigationContainer } from '@react-navigation/native';
 
 function App() {
